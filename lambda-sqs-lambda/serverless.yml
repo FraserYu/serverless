@@ -1,0 +1,45 @@
+service:
+  name: lab6-e-commerce
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-northeast-1
+  stage: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sqs:SendMessage
+      Resource:
+        - Fn::GetAtt: [ receiverQueue, Arn ]
+      
+functions:
+  postman:
+    handler: app/postman.sender
+    events:
+      - http:
+          method: post
+          path: order
+
+  receipt:
+    handler: app/receipt.receiver
+    timeout: 30
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - receiverQueue
+              - Arn
+resources:
+  Resources:
+    receiverQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:custom.conf.queueName}
+
+# package:
+#   exclude:
+#     - node_modules/**
+
+custom: 
+  conf: ${file(conf/config.json)}
