@@ -1,5 +1,5 @@
 service:
-  name: lab6-e-commerce
+  name: lambda-sqs-lambda
 
 provider:
   name: aws
@@ -14,15 +14,15 @@ provider:
         - Fn::GetAtt: [ receiverQueue, Arn ]
       
 functions:
-  postman:
-    handler: app/postman.sender
+  order:
+    handler: app/order.checkout
     events:
       - http:
           method: post
           path: order
 
-  receipt:
-    handler: app/receipt.receiver
+  invoice:
+    handler: app/invoice.generate
     timeout: 30
     events:
       - sqs:

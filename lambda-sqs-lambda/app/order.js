@@ -5,7 +5,7 @@ const AWS = require('aws-sdk');
 const sqs = new AWS.SQS();
 const { v4: uuidv4 } = require('uuid');
 
-module.exports.sender = async (event, context, callback) => {
+module.exports.checkout = async (event, context, callback) => {
     console.log(event)
     let statusCode = 200
     let message

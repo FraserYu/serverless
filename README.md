@@ -1,2 +1,0 @@
-# serverless
-Serverless and AWS

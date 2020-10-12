@@ -1,7 +1,7 @@
 {
-  "name": "lab6-ecommerce",
+  "name": "lambda-sqs-lambda",
   "version": "1.0.0",
-  "description": "lab6",
+  "description": "demo for lambda",
   "scripts": {
     "sls": "serverless",
     "serverless": "serverless",

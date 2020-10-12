@@ -1,4 +1,4 @@
-# Lab6 E-Commerce
+# Lambda Demo
 
 ## How to Deploy
 

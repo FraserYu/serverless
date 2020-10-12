@@ -1,4 +1,4 @@
-module.exports.receiver = (event, context, callback) => {
+module.exports.generate = (event, context, callback) => {
     console.log(event)
     try {
         for (const record of event.Records) {
